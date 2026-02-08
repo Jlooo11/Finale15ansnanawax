@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Finale des 15 ans de Nanawax</title>
+<title>Finale Nanawax XV</title>
 
 <!-- GSAP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -134,6 +134,7 @@ input, select{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
   gap:16px;
+  margin-top:10px;
 }
 
 .option{
@@ -206,7 +207,7 @@ button{
   opacity:0;
 }
 
-/* ===== GOUTTELETTES D’EAU (NON RUISSSELANTES) ===== */
+/* ===== GOUTTELETTES D'EAU (NON RUISSSELANTES) ===== */
 .water-droplets{
   position:fixed;
   inset:0;
@@ -270,6 +271,25 @@ button{
   padding: 10px;
 }
 
+/* ===== FORM SECTIONS ===== */
+.form-section {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(122,92,72,0.2);
+}
+
+.form-section h3 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+  color: var(--marron);
+}
+
+/* Alcool section */
+.alcool-section {
+  transition: all 0.3s ease;
+}
+
 </style>
 </head>
 
@@ -288,9 +308,9 @@ button{
   <!-- HERO -->
   <section class="hero">
     <img src="nanawax maron.png" alt="Nanawax">
-    <h1>Finale des 15 ans de Nanawax</h1>
+    <h1>Finale Nanawax XV</h1>
     <p>
-      Assinie • Abidjan • Côte d’Ivoire<br>
+      Assinie • Côte d'Ivoire<br>
       28 → 30 mars 2026
     </p>
   </section>
@@ -301,73 +321,199 @@ button{
 
     <form id="form">
 
-      <div class="group">
-        <label>Nom & Prénom *</label>
-        <input id="nom" required>
+      <!-- NOM ET PRÉNOM -->
+      <div class="form-section">
+        <h3>Informations personnelles</h3>
+        <div class="group">
+          <label>Nom *</label>
+          <input id="nom" required>
+        </div>
+        <div class="group">
+          <label>Prénom *</label>
+          <input id="prenom" required>
+        </div>
+        
+        <!-- Téléphone avec indicatif -->
+        <div class="group">
+          <label>Téléphone *</label>
+          <div style="display: flex; gap: 12px;">
+            <select id="indicatif" style="flex: 0 0 140px; padding: 16px 12px;">
+              <!-- Options des indicatifs -->
+              <option value="+225">🇨🇮 +225 (Côte d'Ivoire)</option>
+              <option value="+33">🇫🇷 +33 (France)</option>
+              <option value="+32">🇧🇪 +32 (Belgique)</option>
+              <option value="+41">🇨🇭 +41 (Suisse)</option>
+              <option value="+1">🇺🇸 +1 (États-Unis)</option>
+              <option value="+44">🇬🇧 +44 (Royaume-Uni)</option>
+              <option value="+49">🇩🇪 +49 (Allemagne)</option>
+              <option value="+34">🇪🇸 +34 (Espagne)</option>
+              <option value="+39">🇮🇹 +39 (Italie)</option>
+              <option value="+31">🇳🇱 +31 (Pays-Bas)</option>
+              <option value="+351">🇵🇹 +351 (Portugal)</option>
+              <option value="+213">🇩🇿 +213 (Algérie)</option>
+              <option value="+216">🇹🇳 +216 (Tunisie)</option>
+              <option value="+212">🇲🇦 +212 (Maroc)</option>
+              <option value="+221">🇸🇳 +221 (Sénégal)</option>
+              <option value="+223">🇲🇱 +223 (Mali)</option>
+              <option value="+229">🇧🇯 +229 (Bénin)</option>
+              <option value="+226">🇧🇫 +226 (Burkina Faso)</option>
+              <option value="+228">🇹🇬 +228 (Togo)</option>
+              <option value="+237">🇨🇲 +237 (Cameroun)</option>
+              <option value="+242">🇨🇬 +242 (Congo)</option>
+              <option value="+243">🇨🇩 +243 (RDC)</option>
+              <option value="+233">🇬🇭 +233 (Ghana)</option>
+              <option value="+234">🇳🇬 +234 (Nigeria)</option>
+              <option value="+250">🇷🇼 +250 (Rwanda)</option>
+              <option value="+254">🇰🇪 +254 (Kenya)</option>
+              <option value="+255">🇹🇿 +255 (Tanzanie)</option>
+              <option value="+27">🇿🇦 +27 (Afrique du Sud)</option>
+              <option value="+90">🇹🇷 +90 (Turquie)</option>
+              <option value="+971">🇦🇪 +971 (Émirats)</option>
+              <option value="+966">🇸🇦 +966 (Arabie Saoudite)</option>
+              <option value="+20">🇪🇬 +20 (Égypte)</option>
+              <option value="+852">🇭🇰 +852 (Hong Kong)</option>
+              <option value="+86">🇨🇳 +86 (Chine)</option>
+              <option value="+81">🇯🇵 +81 (Japon)</option>
+              <option value="+82">🇰🇷 +82 (Corée du Sud)</option>
+              <option value="+65">🇸🇬 +65 (Singapour)</option>
+              <option value="+60">🇲🇾 +60 (Malaisie)</option>
+              <option value="+61">🇦🇺 +61 (Australie)</option>
+              <option value="+64">🇳🇿 +64 (Nouvelle-Zélande)</option>
+              <option value="+55">🇧🇷 +55 (Brésil)</option>
+              <option value="+52">🇲🇽 +52 (Mexique)</option>
+              <option value="+51">🇵🇪 +51 (Pérou)</option>
+              <option value="+57">🇨🇴 +57 (Colombie)</option>
+              <option value="+58">🇻🇪 +58 (Venezuela)</option>
+              <option value="+54">🇦🇷 +54 (Argentine)</option>
+              <option value="+56">🇨🇱 +56 (Chili)</option>
+              <option value="+7">🇷🇺 +7 (Russie)</option>
+              <option value="+380">🇺🇦 +380 (Ukraine)</option>
+              <option value="+48">🇵🇱 +48 (Pologne)</option>
+              <option value="+40">🇷🇴 +40 (Roumanie)</option>
+              <option value="+30">🇬🇷 +30 (Grèce)</option>
+            </select>
+            <input id="telephone" required placeholder="Numéro de téléphone" style="flex: 1;">
+          </div>
+        </div>
+        
+        <div class="group">
+          <label>Email *</label>
+          <input id="email" type="email" required>
+        </div>
       </div>
 
-     <!-- Téléphone avec indicatif -->
-<div class="group">
-  <label>Téléphone *</label>
-  <div style="display: flex; gap: 12px;">
-    <select id="indicatif" style="flex: 0 0 140px; padding: 16px 12px;">
-      <!-- Options des indicatifs -->
-      <option value="+225">🇨🇮 +225 (Côte d'Ivoire)</option>
-      <option value="+33">🇫🇷 +33 (France)</option>
-      <option value="+32">🇧🇪 +32 (Belgique)</option>
-      <option value="+41">🇨🇭 +41 (Suisse)</option>
-      <option value="+1">🇺🇸 +1 (États-Unis)</option>
-      <option value="+44">🇬🇧 +44 (Royaume-Uni)</option>
-      <option value="+49">🇩🇪 +49 (Allemagne)</option>
-      <option value="+34">🇪🇸 +34 (Espagne)</option>
-      <option value="+39">🇮🇹 +39 (Italie)</option>
-      <option value="+31">🇳🇱 +31 (Pays-Bas)</option>
-      <option value="+351">🇵🇹 +351 (Portugal)</option>
-      <option value="+213">🇩🇿 +213 (Algérie)</option>
-      <option value="+216">🇹🇳 +216 (Tunisie)</option>
-      <option value="+212">🇲🇦 +212 (Maroc)</option>
-      <option value="+221">🇸🇳 +221 (Sénégal)</option>
-      <option value="+223">🇲🇱 +223 (Mali)</option>
-      <option value="+229">🇧🇯 +229 (Bénin)</option>
-      <option value="+226">🇧🇫 +226 (Burkina Faso)</option>
-      <option value="+228">🇹🇬 +228 (Togo)</option>
-      <option value="+237">🇨🇲 +237 (Cameroun)</option>
-      <option value="+242">🇨🇬 +242 (Congo)</option>
-      <option value="+243">🇨🇩 +243 (RDC)</option>
-      <option value="+233">🇬🇭 +233 (Ghana)</option>
-      <option value="+234">🇳🇬 +234 (Nigeria)</option>
-      <option value="+250">🇷🇼 +250 (Rwanda)</option>
-      <option value="+254">🇰🇪 +254 (Kenya)</option>
-      <option value="+255">🇹🇿 +255 (Tanzanie)</option>
-      <option value="+27">🇿🇦 +27 (Afrique du Sud)</option>
-      <option value="+90">🇹🇷 +90 (Turquie)</option>
-      <option value="+971">🇦🇪 +971 (Émirats)</option>
-      <option value="+966">🇸🇦 +966 (Arabie Saoudite)</option>
-      <option value="+20">🇪🇬 +20 (Égypte)</option>
-      <option value="+852">🇭🇰 +852 (Hong Kong)</option>
-      <option value="+86">🇨🇳 +86 (Chine)</option>
-      <option value="+81">🇯🇵 +81 (Japon)</option>
-      <option value="+82">🇰🇷 +82 (Corée du Sud)</option>
-      <option value="+65">🇸🇬 +65 (Singapour)</option>
-      <option value="+60">🇲🇾 +60 (Malaisie)</option>
-      <option value="+61">🇦🇺 +61 (Australie)</option>
-      <option value="+64">🇳🇿 +64 (Nouvelle-Zélande)</option>
-      <option value="+55">🇧🇷 +55 (Brésil)</option>
-      <option value="+52">🇲🇽 +52 (Mexique)</option>
-      <option value="+51">🇵🇪 +51 (Pérou)</option>
-      <option value="+57">🇨🇴 +57 (Colombie)</option>
-      <option value="+58">🇻🇪 +58 (Venezuela)</option>
-      <option value="+54">🇦🇷 +54 (Argentine)</option>
-      <option value="+56">🇨🇱 +56 (Chili)</option>
-      <option value="+7">🇷🇺 +7 (Russie)</option>
-      <option value="+380">🇺🇦 +380 (Ukraine)</option>
-      <option value="+48">🇵🇱 +48 (Pologne)</option>
-      <option value="+40">🇷🇴 +40 (Roumanie)</option>
-      <option value="+30">🇬🇷 +30 (Grèce)</option>
-    </select>
-    <input id="telephone" required placeholder="Numéro de téléphone" style="flex: 1;">
-  </div>
-</div>
+      <!-- TAILLE DES VÊTEMENTS -->
+      <div class="form-section">
+        <h3>Taille des vêtements</h3>
+        <div class="options" id="taille-vetements">
+          <div class="option" data-value="XS">XS</div>
+          <div class="option" data-value="S">S</div>
+          <div class="option" data-value="M">M</div>
+          <div class="option" data-value="L">L</div>
+          <div class="option" data-value="XL">XL</div>
+          <div class="option" data-value="2XL">2XL</div>
+          <div class="option" data-value="3XL">3XL</div>
+          <div class="option" data-value="4XL">4XL</div>
+        </div>
+      </div>
+
+      <!-- POINTURES -->
+      <div class="form-section">
+        <h3>Pointure</h3>
+        <div class="options" id="pointures">
+          <div class="option" data-value="36">36</div>
+          <div class="option" data-value="37">37</div>
+          <div class="option" data-value="38">38</div>
+          <div class="option" data-value="39">39</div>
+          <div class="option" data-value="40">40</div>
+          <div class="option" data-value="41">41</div>
+          <div class="option" data-value="42">42</div>
+          <div class="option" data-value="43">43</div>
+          <div class="option" data-value="44">44</div>
+          <div class="option" data-value="45">45</div>
+          <div class="option" data-value="46">46</div>
+        </div>
+      </div>
+
+      <!-- COULEURS PRÉFÉRÉES -->
+      <div class="form-section">
+        <h3>Couleurs préférées</h3>
+        <div class="options" id="couleurs">
+          <div class="option" data-value="blanc">blanc</div>
+          <div class="option" data-value="noir">noir</div>
+          <div class="option" data-value="marron">marron</div>
+          <div class="option" data-value="beige">beige</div>
+          <div class="option" data-value="bleu">bleu</div>
+          <div class="option" data-value="vert">vert</div>
+          <div class="option" data-value="rouge">rouge</div>
+          <div class="option" data-value="rose">rose</div>
+          <div class="option" data-value="violet">violet</div>
+          <div class="option" data-value="jaune">jaune</div>
+          <div class="option" data-value="orange">orange</div>
+          <div class="option" data-value="saumon">saumon</div>
+          <div class="option" data-value="terracotta">terracotta</div>
+        </div>
+      </div>
+
+      <!-- CONSOMMATION D'ALCOOL -->
+      <div class="form-section">
+        <h3>Consommation d'alcool</h3>
+        <div class="options" id="alcool-option">
+          <div class="option" data-value="oui">Oui</div>
+          <div class="option" data-value="non">Non</div>
+        </div>
+      </div>
+
+      <!-- JUS PRÉFÉRÉS -->
+      <div class="form-section" id="jus-section">
+        <h3>Jus préférés</h3>
+        <div class="options" id="jus">
+          <div class="option" data-value="pomme">pomme</div>
+          <div class="option" data-value="mangue">mangue</div>
+          <div class="option" data-value="ananas">ananas</div>
+          <div class="option" data-value="orange">orange</div>
+          <div class="option" data-value="aucun">aucun</div>
+        </div>
+      </div>
+
+      <!-- CHAMPAGNE (UNIQUEMENT SI ALCOOL = OUI) -->
+      <div class="form-section alcool-section hidden" id="champagne-section">
+        <h3>Champagne préféré</h3>
+        <div class="options" id="champagne">
+          <div class="option" data-value="rosé">rosé</div>
+          <div class="option" data-value="demi sec">demi sec</div>
+          <div class="option" data-value="brut">brut</div>
+        </div>
+      </div>
+
+      <!-- SPIRITUEUX (UNIQUEMENT SI ALCOOL = OUI) -->
+      <div class="form-section alcool-section hidden" id="spiritueux-section">
+        <h3>Spiritueux préférés</h3>
+        <div class="options" id="spiritueux">
+          <div class="option" data-value="vodka">vodka</div>
+          <div class="option" data-value="rhum">rhum</div>
+          <div class="option" data-value="gin">gin</div>
+          <div class="option" data-value="whisky">whisky</div>
+        </div>
+      </div>
+
+      <!-- BOISSONS CHAUDES -->
+      <div class="form-section">
+        <h3>Boissons chaudes</h3>
+        <div class="options" id="boissons-chaudes">
+          <div class="option" data-value="thé">Thé</div>
+          <div class="option" data-value="café">Café</div>
+        </div>
+      </div>
+
+      <!-- ALLERGIES FRUITS DE MER -->
+      <div class="form-section">
+        <h3>Allergies aux fruits de mer</h3>
+        <div class="options" id="allergies">
+          <div class="option" data-value="oui">Oui</div>
+          <div class="option" data-value="non">Non</div>
+        </div>
+      </div>
 
       <button>Confirmer la réservation</button>
 
@@ -447,14 +593,32 @@ gsap.to(".ray",{
   ease:"sine.inOut"
 });
 
-
-
 /* ===== LOGIQUE ===== */
-const heb = document.getElementById("hebergement");
-const events = document.getElementById("events");
-const options = document.querySelectorAll(".option");
-let selected = [];
+const form = document.getElementById("form");
+const nom = document.getElementById("nom");
+const prenom = document.getElementById("prenom");
+const email = document.getElementById("email");
+const indicatif = document.getElementById("indicatif");
+const telephone = document.getElementById("telephone");
+const overlay = document.getElementById("overlay");
+const resume = document.getElementById("resume");
 
+// Sections alcool
+const champagneSection = document.getElementById("champagne-section");
+const spiritueuxSection = document.getElementById("spiritueux-section");
+
+// Variables pour stocker les sélections
+let selectedTaille = [];
+let selectedPointure = [];
+let selectedCouleurs = [];
+let selectedAlcool = "";
+let selectedJus = [];
+let selectedChampagne = [];
+let selectedSpiritueux = [];
+let selectedBoissonsChaudes = [];
+let selectedAllergies = "";
+
+/* ===== PARTICULES ===== */
 const particlesContainer = document.getElementById("particles");
 const PARTICLES_COUNT = 18;
 
@@ -481,56 +645,204 @@ for(let i=0;i<PARTICLES_COUNT;i++){
   });
 }
 
+/* ===== GESTION DES OPTIONS ===== */
+function setupOptions(containerId, selectedArray, isSingle = false) {
+  const container = document.getElementById(containerId);
+  const options = container.querySelectorAll(".option");
+  
+  options.forEach(option => {
+    option.onclick = () => {
+      if (isSingle) {
+        // Pour une sélection unique
+        options.forEach(o => o.classList.remove("active"));
+        option.classList.add("active");
+        selectedArray.length = 0;
+        selectedArray.push(option.dataset.value);
+      } else {
+        // Pour sélection multiple
+        option.classList.toggle("active");
+        const value = option.dataset.value;
+        if (selectedArray.includes(value)) {
+          selectedArray = selectedArray.filter(x => x !== value);
+        } else {
+          selectedArray.push(value);
+        }
+      }
+    };
+  });
+  
+  return { options, selectedArray };
+}
 
-heb.addEventListener("change",()=>{
-  events.classList.toggle("hidden", heb.value !== "Sans hébergement");
+// Initialiser toutes les options
+const tailleVetements = setupOptions("taille-vetements", selectedTaille, true);
+selectedTaille = tailleVetements.selectedArray;
+
+const pointures = setupOptions("pointures", selectedPointure, true);
+selectedPointure = pointures.selectedArray;
+
+const couleurs = setupOptions("couleurs", selectedCouleurs);
+selectedCouleurs = couleurs.selectedArray;
+
+const alcoolOption = setupOptions("alcool-option", [selectedAlcool], true);
+// Surveiller les changements pour l'alcool
+document.querySelectorAll('#alcool-option .option').forEach(option => {
+  option.onclick = function() {
+    document.querySelectorAll('#alcool-option .option').forEach(o => o.classList.remove("active"));
+    this.classList.add("active");
+    selectedAlcool = this.dataset.value;
+    
+    // Afficher/masquer les sections alcool
+    if (selectedAlcool === "oui") {
+      champagneSection.classList.remove("hidden");
+      spiritueuxSection.classList.remove("hidden");
+    } else {
+      champagneSection.classList.add("hidden");
+      spiritueuxSection.classList.add("hidden");
+      // Réinitialiser les sélections d'alcool
+      selectedChampagne = [];
+      selectedSpiritueux = [];
+      document.querySelectorAll('#champagne .option, #spiritueux .option').forEach(o => {
+        o.classList.remove("active");
+      });
+    }
+  };
 });
 
-options.forEach(o=>{
-  o.onclick=()=>{
-    o.classList.toggle("active");
-    const v=o.dataset.value;
-    selected.includes(v)
-      ? selected=selected.filter(x=>x!==v)
-      : selected.push(v);
-  }
+const jus = setupOptions("jus", selectedJus);
+selectedJus = jus.selectedArray;
+
+const champagne = setupOptions("champagne", selectedChampagne);
+selectedChampagne = champagne.selectedArray;
+
+const spiritueux = setupOptions("spiritueux", selectedSpiritueux);
+selectedSpiritueux = spiritueux.selectedArray;
+
+const boissonsChaudes = setupOptions("boissons-chaudes", selectedBoissonsChaudes);
+selectedBoissonsChaudes = boissonsChaudes.selectedArray;
+
+const allergies = setupOptions("allergies", [selectedAllergies], true);
+// Mettre à jour selectedAllergies
+document.querySelectorAll('#allergies .option').forEach(option => {
+  option.onclick = function() {
+    document.querySelectorAll('#allergies .option').forEach(o => o.classList.remove("active"));
+    this.classList.add("active");
+    selectedAllergies = this.dataset.value;
+  };
 });
 
-form.onsubmit=e=>{
+/* ===== SOUMISSION DU FORMULAIRE ===== */
+form.onsubmit = e => {
   e.preventDefault();
 
-const data={
-  nom:nom.value,
-  indicatif: indicatif.value,
-  telephone:telephone.value,
-  telephone_complet: indicatif.value + " " + telephone.value, // Numéro complet
-  hebergement:heb.value,
-  participation:selected.join(", ") || "—",
-  evenement:"Finale des 15 ans de Nanawax",
-  date:"28-30 mars 2026",
-  lieu:"Assinie"
-};
-
-  emailjs.send("service_xoza1k6","template_jtmxw1q",data);
-
+  // Récupérer toutes les sélections actuelles
+  selectedTaille = [];
+  selectedPointure = [];
+  selectedCouleurs = [];
+  selectedJus = [];
+  selectedChampagne = [];
+  selectedSpiritueux = [];
+  selectedBoissonsChaudes = [];
   
-resume.innerHTML=`
-  <p><b>Nom :</b> ${data.nom}</p>
-  <p><b>Téléphone :</b> ${data.telephone_complet}</p>
-`;
+  document.querySelectorAll('#taille-vetements .option.active').forEach(o => {
+    selectedTaille.push(o.dataset.value);
+  });
+  
+  document.querySelectorAll('#pointures .option.active').forEach(o => {
+    selectedPointure.push(o.dataset.value);
+  });
+  
+  document.querySelectorAll('#couleurs .option.active').forEach(o => {
+    selectedCouleurs.push(o.dataset.value);
+  });
+  
+  document.querySelectorAll('#jus .option.active').forEach(o => {
+    selectedJus.push(o.dataset.value);
+  });
+  
+  document.querySelectorAll('#champagne .option.active').forEach(o => {
+    selectedChampagne.push(o.dataset.value);
+  });
+  
+  document.querySelectorAll('#spiritueux .option.active').forEach(o => {
+    selectedSpiritueux.push(o.dataset.value);
+  });
+  
+  document.querySelectorAll('#boissons-chaudes .option.active').forEach(o => {
+    selectedBoissonsChaudes.push(o.dataset.value);
+  });
+
+  const data = {
+    nom: nom.value,
+    prenom: prenom.value,
+    email: email.value,
+    indicatif: indicatif.value,
+    telephone: telephone.value,
+    telephone_complet: indicatif.value + " " + telephone.value,
+    taille: selectedTaille.join(", ") || "—",
+    pointure: selectedPointure.join(", ") || "—",
+    couleurs: selectedCouleurs.join(", ") || "—",
+    alcool: selectedAlcool || "—",
+    jus: selectedJus.join(", ") || "—",
+    champagne: selectedChampagne.join(", ") || "—",
+    spiritueux: selectedSpiritueux.join(", ") || "—",
+    boissons_chaudes: selectedBoissonsChaudes.join(", ") || "—",
+    allergies_fruits_de_mer: selectedAllergies || "—",
+    evenement: "Finale Nanawax XV",
+    date: "28-30 mars 2026",
+    lieu: "Assinie"
+  };
+
+  // Envoyer l'email
+  emailjs.send("service_xoza1k6", "template_jtmxw1q", data);
+
+  // Afficher le résumé
+  resume.innerHTML = `
+    <p><b>Nom :</b> ${data.nom} ${data.prenom}</p>
+    <p><b>Email :</b> ${data.email}</p>
+    <p><b>Téléphone :</b> ${data.telephone_complet}</p>
+    <p><b>Taille :</b> ${data.taille}</p>
+    <p><b>Pointure :</b> ${data.pointure}</p>
+    <p><b>Couleurs préférées :</b> ${data.couleurs}</p>
+    <p><b>Consommation d'alcool :</b> ${data.alcool}</p>
+    <p><b>Jus préférés :</b> ${data.jus}</p>
+    ${data.alcool === "oui" ? `<p><b>Champagne :</b> ${data.champagne}</p>` : ''}
+    ${data.alcool === "oui" ? `<p><b>Spiritueux :</b> ${data.spiritueux}</p>` : ''}
+    <p><b>Boissons chaudes :</b> ${data.boissons_chaudes}</p>
+    <p><b>Allergies fruits de mer :</b> ${data.allergies_fruits_de_mer}</p>
+  `;
+  
   overlay.classList.add("show");
 };
 
-function closeConfirm(){
+function closeConfirm() {
   overlay.classList.remove("show");
   form.reset();
-  selected=[];
-  options.forEach(o=>o.classList.remove("active"));
+  
+  // Réinitialiser toutes les sélections
+  selectedTaille = [];
+  selectedPointure = [];
+  selectedCouleurs = [];
+  selectedAlcool = "";
+  selectedJus = [];
+  selectedChampagne = [];
+  selectedSpiritueux = [];
+  selectedBoissonsChaudes = [];
+  selectedAllergies = "";
+  
+  // Désactiver toutes les options
+  document.querySelectorAll('.option').forEach(o => {
+    o.classList.remove("active");
+  });
+  
+  // Masquer les sections alcool
+  champagneSection.classList.add("hidden");
+  spiritueuxSection.classList.add("hidden");
 }
 
-/* ===== GSAP ===== */
-gsap.from(".hero",{opacity:0,y:-50,duration:1});
-gsap.from(".glass",{opacity:0,y:80,duration:1,delay:.3});
+/* ===== ANIMATIONS GSAP ===== */
+gsap.from(".hero", { opacity: 0, y: -50, duration: 1 });
+gsap.from(".glass", { opacity: 0, y: 80, duration: 1, delay: .3 });
 </script>
 
 </body>
