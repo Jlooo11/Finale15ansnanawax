@@ -622,9 +622,9 @@ button{
           <div class="upload-container">
             <input type="file" id="photo" accept="image/jpeg, image/png" style="display: none;">
             <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
-              <button type="button" id="uploadBtn">
-                <i class="fas fa-cloud-upload-alt" style="margin-right: 8px;"></i> Choisir une photo
-              </button>
+              <button type="button" id="uploadBtn" onclick="document.getElementById('photo').click()">
+  <i class="fas fa-cloud-upload-alt" style="margin-right: 8px;"></i> Choisir une photo
+</button>
               <span id="fileName" style="color: #5a4432; font-style: italic;">Aucune photo sélectionnée</span>
             </div>
             <div id="imagePreview" style="margin-top: 15px; display: none;">
