@@ -79,10 +79,18 @@ body::before{
 }
 
 .hero h1{
-  font-size:2.8rem; /* Réduit pour tenir sur une ligne */
+  font-size:2.8rem;
   font-weight:300;
   letter-spacing:1px;
   line-height:1.2;
+}
+
+.hero .subtitle{
+  margin-top:10px;
+  font-size:1.3rem;
+  color:var(--marron);
+  font-weight:500;
+  letter-spacing:0.5px;
 }
 
 .hero p{
@@ -94,13 +102,13 @@ body::before{
 /* ===== GLASS CARD ===== */
 .glass{
   background:var(--glass);
-  backdrop-filter:blur(5px); /* Réduit de 26px à 5px seulement */
+  backdrop-filter:blur(5px);
   -webkit-backdrop-filter:blur(5px);
   border-radius:34px;
   border:1px solid var(--border);
   box-shadow:
-    inset 0 0 20px rgba(255,255,255,0.2), /* Réduit l'effet interne */
-    0 20px 50px rgba(0,0,0,0.15); /* Ombre plus légère */
+    inset 0 0 20px rgba(255,255,255,0.2),
+    0 20px 50px rgba(0,0,0,0.15);
   padding:55px;
 }
 
@@ -165,6 +173,11 @@ button{
   font-size:1.15rem;
   cursor:pointer;
   margin-top:20px;
+  transition:transform 0.3s;
+}
+
+button:hover{
+  transform:translateY(-2px);
 }
 
 /* ===== HIDDEN ===== */
@@ -178,6 +191,7 @@ button{
   display:none;
   align-items:center;
   justify-content:center;
+  z-index:1000;
 }
 
 .overlay.show{display:flex}
@@ -208,7 +222,7 @@ button{
   opacity:0;
 }
 
-/* ===== GOUTTELETTES D'EAU (NON RUISSSELANTES) ===== */
+/* ===== GOUTTELETTES D'EAU ===== */
 .water-droplets{
   position:fixed;
   inset:0;
@@ -291,51 +305,63 @@ button{
   transition: all 0.3s ease;
 }
 
-/* ===== UPLOAD PHOTO STYLES ===== */
-.upload-container {
-  background: rgba(255, 255, 255, 0.6);
-  padding: 20px;
+/* Photo upload */
+#photo {
+  cursor: pointer;
   border-radius: 18px;
-  border: 1px dashed var(--marron);
+  border: 2px dashed rgba(122,92,72,0.3);
+  padding: 16px;
+  background: rgba(255,255,255,0.7);
+  transition: all 0.3s;
 }
 
-#uploadBtn {
-  border-radius: 16px;
+#photo:hover {
+  background: rgba(255,255,255,0.9);
+  border-color: var(--marron);
+}
+
+#preview-image {
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.instagram-input {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.85);
+  border-radius: 18px;
+  padding-right: 18px;
+}
+
+.instagram-prefix {
+  padding: 16px 0 16px 18px;
   font-size: 1rem;
-  padding: 12px 24px;
-  background: linear-gradient(135deg, #9b7a60, #7a5c48);
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: auto;
+  color: var(--marron);
+  font-weight: 500;
 }
 
-#uploadBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(122, 92, 72, 0.3);
+/* Loading animation */
+.loading {
+  display: none;
+  text-align: center;
+  margin-top: 20px;
 }
 
-#uploadBtn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(122,92,72,0.2);
+  border-top: 4px solid var(--marron);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px;
 }
 
-#removePhoto {
-  border-radius: 12px;
-  background: #e74c3c;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 6px 12px;
-  font-size: 0.9rem;
-  width: auto;
-  margin-top: 8px;
-}
-
-#removePhoto:hover {
-  background: #c0392b;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* ===== RESPONSIVE MOBILE ===== */
@@ -354,9 +380,14 @@ button{
   }
   
   .hero h1 {
-    font-size: 2.2rem; /* Taille adaptée pour mobile */
+    font-size: 2.2rem;
     line-height: 1.3;
     padding: 0 10px;
+  }
+  
+  .hero .subtitle {
+    font-size: 1.1rem;
+    margin-top: 5px;
   }
   
   .hero p {
@@ -396,27 +427,23 @@ button{
     font-size: 0.95rem;
   }
   
-  /* Téléphone mobile */
   #indicatif {
     flex: 0 0 120px !important;
     padding: 14px 10px !important;
     font-size: 0.9rem;
   }
   
-  /* Bouton de soumission */
   button {
     padding: 16px;
     font-size: 1.1rem;
     border-radius: 20px;
   }
   
-  /* Popup de confirmation */
   .confirm {
     padding: 30px 25px;
     border-radius: 25px;
   }
   
-  /* Rayons de soleil plus petits sur mobile */
   .sun-rays {
     width: 120px;
     height: 120px;
@@ -430,30 +457,18 @@ button{
     width: 3px;
   }
   
-  /* Gouttelettes moins nombreuses sur mobile */
   .water-droplets {
-    display: none; /* Optionnel : caché sur mobile pour performance */
-  }
-  
-  /* Upload photo responsive */
-  .upload-container {
-    padding: 15px;
-  }
-  
-  #uploadBtn {
-    padding: 10px 16px;
-    font-size: 0.95rem;
-  }
-  
-  #imagePreview img {
-    width: 120px;
-    height: 120px;
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
   .hero h1 {
     font-size: 1.9rem;
+  }
+  
+  .hero .subtitle {
+    font-size: 1rem;
   }
   
   .glass {
@@ -476,12 +491,10 @@ button{
     padding: 12px 8px !important;
   }
   
-  /* Titres sections plus petits */
   .form-section h3 {
     font-size: 1.1rem;
   }
   
-  /* Réduire les marges */
   .group {
     margin-bottom: 20px;
   }
@@ -491,20 +504,9 @@ button{
     padding-bottom: 15px;
   }
   
-  /* Upload photo mobile */
-  #uploadBtn {
-    padding: 8px 14px;
-    font-size: 0.9rem;
-  }
-  
-  #fileName {
-    font-size: 0.9rem;
-    display: block;
-    margin-top: 8px;
-  }
-  
-  .upload-container {
-    padding: 12px;
+  .instagram-prefix {
+    padding: 14px 0 14px 14px;
+    font-size: 0.95rem;
   }
 }
 </style>
@@ -524,6 +526,7 @@ button{
   <section class="hero">
     <img src="nanawax maron.png" alt="Nanawax">
     <h1>Finale Nanawax 15ans</h1>
+    <div class="subtitle">Un dîner, une soirée, un brunch</div>
     <p>
       Assinie • Côte d'Ivoire<br>
       28 → 30 mars 2026
@@ -535,6 +538,12 @@ button{
     <h2>Réservation</h2>
 
     <form id="form">
+      
+      <!-- Loading animation -->
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Traitement en cours...</p>
+      </div>
 
       <!-- NOM ET PRÉNOM -->
       <div class="form-section">
@@ -553,7 +562,6 @@ button{
           <label>Numéro WhatsApp *</label>
           <div style="display: flex; gap: 12px;">
             <select id="indicatif" style="flex: 0 0 140px; padding: 16px 12px;">
-              <!-- Options des indicatifs -->
               <option value="+225">🇨🇮 +225 (Côte d'Ivoire)</option>
               <option value="+33">🇫🇷 +33 (France)</option>
               <option value="+32">🇧🇪 +32 (Belgique)</option>
@@ -600,7 +608,7 @@ button{
               <option value="+57">🇨🇴 +57 (Colombie)</option>
               <option value="+58">🇻🇪 +58 (Venezuela)</option>
               <option value="+54">🇦🇷 +54 (Argentine)</option>
-              <option value="+56">🇨🇱 +56 (Chili)</option>
+              <option value="+56">🇨🇱 +56 (Chile)</option>
               <option value="+7">🇷🇺 +7 (Russie)</option>
               <option value="+380">🇺🇦 +380 (Ukraine)</option>
               <option value="+48">🇵🇱 +48 (Pologne)</option>
@@ -615,29 +623,15 @@ button{
           <label>Email *</label>
           <input id="email" type="email" required>
         </div>
+      </div>
 
-        <!-- PHOTO EN TENUE NANAWAX -->
+      <!-- INSTAGRAM -->
+      <div class="form-section">
+        <h3>Compte Instagram *</h3>
         <div class="group">
-          <label>Photo en tenue Nanawax</label>
-          <div class="upload-container">
-            <input type="file" id="photo" accept="image/jpeg, image/png" style="display: none;">
-            <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
-              <button type="button" id="uploadBtn" onclick="document.getElementById('photo').click()">
-  <i class="fas fa-cloud-upload-alt" style="margin-right: 8px;"></i> Choisir une photo
-</button>
-              <span id="fileName" style="color: #5a4432; font-style: italic;">Aucune photo sélectionnée</span>
-            </div>
-            <div id="imagePreview" style="margin-top: 15px; display: none;">
-              <div style="width: 150px; height: 150px; border-radius: 12px; overflow: hidden; border: 2px solid var(--marron);">
-                <img id="previewImage" style="width: 100%; height: 100%; object-fit: cover;">
-              </div>
-              <button type="button" id="removePhoto">
-                <i class="fas fa-trash" style="margin-right: 5px;"></i> Supprimer
-              </button>
-            </div>
-            <small style="display: block; margin-top: 8px; color: #7a5c48; opacity: 0.8;">
-              Formats acceptés : JPG, PNG (max. 5MB)
-            </small>
+          <div class="instagram-input">
+            <span class="instagram-prefix">@</span>
+            <input id="instagram" required placeholder="nomdutilisateur" style="border: none; background: transparent; padding-left: 0;">
           </div>
         </div>
       </div>
@@ -654,6 +648,20 @@ button{
           <div class="option" data-value="2XL">2XL</div>
           <div class="option" data-value="3XL">3XL</div>
           <div class="option" data-value="4XL">4XL</div>
+        </div>
+      </div>
+
+      <!-- PHOTO -->
+      <div class="form-section">
+        <h3>Photo de vous habillé en Nanawax (optionnel)</h3>
+        <div class="group">
+          <input type="file" id="photo" accept="image/*">
+          <small style="display: block; margin-top: 8px; color: #666; font-size: 0.9rem;">
+            Format recommandé : JPG, PNG (max 5MB)
+          </small>
+        </div>
+        <div id="photo-preview" style="margin-top: 20px; display: none; text-align: center;">
+          <img id="preview-image" src="" alt="Aperçu de la photo">
         </div>
       </div>
 
@@ -692,6 +700,20 @@ button{
           <div class="option" data-value="orange">orange</div>
           <div class="option" data-value="saumon">saumon</div>
           <div class="option" data-value="terracotta">terracotta</div>
+        </div>
+      </div>
+
+      <!-- ODEURS PRÉFÉRÉES -->
+      <div class="form-section">
+        <h3>Odeur préférée</h3>
+        <div class="options" id="odeurs">
+          <div class="option" data-value="vanille">Vanille</div>
+          <div class="option" data-value="lavande">Lavande</div>
+          <div class="option" data-value="oud">Oud</div>
+          <div class="option" data-value="jasmin">Jasmin</div>
+          <div class="option" data-value="fruit de la passion">Fruit de la passion</div>
+          <div class="option" data-value="menthe">Menthe</div>
+          <div class="option" data-value="aucun">Aucun</div>
         </div>
       </div>
 
@@ -755,7 +777,7 @@ button{
         </div>
       </div>
 
-      <button type="submit">Confirmer la réservation</button>
+      <button type="submit" id="submit-btn">Confirmer la réservation</button>
 
     </form>
   </section>
@@ -771,346 +793,320 @@ button{
 </div>
 
 <script>
-// Configuration Cloudinary
-const CLOUDINARY_CLOUD_NAME = 'dehjhn0we';
-const CLOUDINARY_UPLOAD_PRESET = 'nanawax_photos';
+  // Configuration Cloudinary
+  const CLOUDINARY_CLOUD_NAME = 'dehjhn0we';
+  const CLOUDINARY_UPLOAD_PRESET = 'nanawax_photos';
 
-/* ===== EMAILJS ===== */
-emailjs.init("13uhnx4ywp64w0KDy");
+  // Configuration EmailJS - VOTRE USER ID
+  emailjs.init("13uhnx4ywp64w0KDy");
 
-/* ===== GOUTTELETTES D'EAU ===== */
-const dropletsContainer = document.getElementById("droplets");
-const DROPLETS_COUNT = 22;
+  /* ===== GOUTTELETTES D'EAU ===== */
+  const dropletsContainer = document.getElementById("droplets");
+  const DROPLETS_COUNT = 22;
 
-for(let i=0;i<DROPLETS_COUNT;i++){
-  const d = document.createElement("div");
-  d.className = "droplet";
-  dropletsContainer.appendChild(d);
+  for(let i=0;i<DROPLETS_COUNT;i++){
+    const d = document.createElement("div");
+    d.className = "droplet";
+    dropletsContainer.appendChild(d);
 
-  const size = Math.random() * 24 + 8;
+    const size = Math.random() * 24 + 8;
 
-  gsap.set(d,{
-    width: size,
-    height: size,
-    x: Math.random() * window.innerWidth,
-    y: Math.random() * window.innerHeight,
-    opacity: Math.random() * 0.25 + 0.15
-  });
+    gsap.set(d,{
+      width: size,
+      height: size,
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      opacity: Math.random() * 0.25 + 0.15
+    });
 
-  gsap.to(d,{
-    x: "+=" + (Math.random()*20-10),
-    y: "+=" + (Math.random()*20-10),
-    scale: Math.random()*0.15 + 0.95,
-    duration: Math.random()*6 + 6,
-    repeat:-1,
-    yoyo:true,
-    ease:"sine.inOut"
-  });
-}
-
-/* ===== RAYONS DE SOLEIL ===== */
-const sun = document.getElementById("sunRays");
-const RAYS_COUNT = 12;
-
-for(let i=0;i<RAYS_COUNT;i++){
-  const r = document.createElement("div");
-  r.className = "ray";
-  sun.appendChild(r);
-
-  gsap.set(r,{ rotation:(360/RAYS_COUNT)*i });
-}
-
-gsap.to(".ray",{
-  rotation:"+=360",
-  duration:90,
-  repeat:-1,
-  ease:"none"
-});
-
-gsap.to(".ray",{
-  opacity:()=>Math.random()*0.4+0.3,
-  scaleY:()=>Math.random()*0.3+0.9,
-  duration:()=>Math.random()*4+3,
-  repeat:-1,
-  yoyo:true,
-  stagger:0.15,
-  ease:"sine.inOut"
-});
-
-/* ===== LOGIQUE ===== */
-const form = document.getElementById("form");
-const nom = document.getElementById("nom");
-const prenom = document.getElementById("prenom");
-const email = document.getElementById("email");
-const indicatif = document.getElementById("indicatif");
-const telephone = document.getElementById("telephone");
-const overlay = document.getElementById("overlay");
-const resume = document.getElementById("resume");
-
-// Sections alcool
-const champagneSection = document.getElementById("champagne-section");
-const spiritueuxSection = document.getElementById("spiritueux-section");
-
-// Variables pour stocker les sélections
-let selectedTaille = [];
-let selectedPointure = [];
-let selectedCouleurs = [];
-let selectedAlcool = "";
-let selectedJus = [];
-let selectedChampagne = [];
-let selectedSpiritueux = [];
-let selectedBoissonsChaudes = [];
-let selectedAllergies = "";
-
-/* ===== GESTION UPLOAD PHOTO ===== */
-const photoInput = document.getElementById('photo');
-const uploadBtn = document.getElementById('uploadBtn');
-const fileName = document.getElementById('fileName');
-const imagePreview = document.getElementById('imagePreview');
-const previewImage = document.getElementById('previewImage');
-const removePhotoBtn = document.getElementById('removePhoto');
-
-let uploadedPhoto = null;
-let cloudinaryPhotoUrl = null;
-
-// Ouvrir le sélecteur de fichier au clic
-uploadBtn.onclick = () => {
-  photoInput.click();
-};
-
-// Gérer la sélection de fichier
-photoInput.onchange = (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    // Vérifier la taille (max 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      alert('La photo est trop volumineuse. Taille maximale : 5MB');
-      photoInput.value = '';
-      return;
-    }
-    
-    // Vérifier le type
-    if (!file.type.match('image/jpeg') && !file.type.match('image/png')) {
-      alert('Format non supporté. Utilisez JPG ou PNG.');
-      photoInput.value = '';
-      return;
-    }
-    
-    uploadedPhoto = file;
-    fileName.textContent = `${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
-    
-    // Afficher la prévisualisation
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      previewImage.src = event.target.result;
-      imagePreview.style.display = 'block';
-    };
-    reader.readAsDataURL(file);
+    gsap.to(d,{
+      x: "+=" + (Math.random()*20-10),
+      y: "+=" + (Math.random()*20-10),
+      scale: Math.random()*0.15 + 0.95,
+      duration: Math.random()*6 + 6,
+      repeat:-1,
+      yoyo:true,
+      ease:"sine.inOut"
+    });
   }
-};
 
-// Supprimer la photo
-removePhotoBtn.onclick = () => {
-  photoInput.value = '';
-  uploadedPhoto = null;
-  cloudinaryPhotoUrl = null;
-  fileName.textContent = 'Aucune photo sélectionnée';
-  imagePreview.style.display = 'none';
-  previewImage.src = '';
-};
+  /* ===== LOGIQUE ===== */
+  const form = document.getElementById("form");
+  const nom = document.getElementById("nom");
+  const prenom = document.getElementById("prenom");
+  const email = document.getElementById("email");
+  const indicatif = document.getElementById("indicatif");
+  const telephone = document.getElementById("telephone");
+  const instagram = document.getElementById("instagram");
+  const overlay = document.getElementById("overlay");
+  const resume = document.getElementById("resume");
+  const loading = document.getElementById("loading");
+  const submitBtn = document.getElementById("submit-btn");
 
-/* ===== FONCTION D'UPLOAD CLOUDINARY ===== */
-async function uploadToCloudinary(file) {
-  // Afficher un indicateur de chargement
-  const originalText = uploadBtn.innerHTML;
-  uploadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Upload en cours...';
-  uploadBtn.disabled = true;
-  
-  try {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-    formData.append('folder', 'nanawax_photos');
-    formData.append('tags', 'nanawax,invite,photo');
-    
-    // Upload vers Cloudinary
-    const response = await fetch(
-      `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
-      {
-        method: 'POST',
-        body: formData
-      }
-    );
-    
-    if (!response.ok) {
-      throw new Error(`Erreur Cloudinary: ${response.status}`);
-    }
-    
-    const data = await response.json();
-    
-    // Retourner l'URL optimisée
-    return {
-      url: data.secure_url,
-      public_id: data.public_id,
-      format: data.format,
-      size: data.bytes
-    };
-    
-  } catch (error) {
-    console.error('Erreur upload Cloudinary:', error);
-    alert('Erreur lors de l\'upload de la photo. Veuillez réessayer.');
-    return null;
-  } finally {
-    // Restaurer le bouton
-    uploadBtn.innerHTML = originalText;
-    uploadBtn.disabled = false;
+  // Sections alcool
+  const champagneSection = document.getElementById("champagne-section");
+  const spiritueuxSection = document.getElementById("spiritueux-section");
+
+  // Variables pour stocker les sélections
+  let selectedTaille = [];
+  let selectedPointure = [];
+  let selectedCouleurs = [];
+  let selectedOdeurs = [];
+  let selectedAlcool = "";
+  let selectedJus = [];
+  let selectedChampagne = [];
+  let selectedSpiritueux = [];
+  let selectedBoissonsChaudes = [];
+  let selectedAllergies = "";
+
+  /* ===== PARTICULES ===== */
+  const particlesContainer = document.getElementById("particles");
+  const PARTICLES_COUNT = 18;
+
+  for(let i=0;i<PARTICLES_COUNT;i++){
+    const p = document.createElement("div");
+    p.className = "particle";
+    particlesContainer.appendChild(p);
+
+    gsap.set(p,{
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      scale: Math.random() * 1.2 + 0.4
+    });
+
+    gsap.to(p,{
+      y: "-=120",
+      x: "+=40",
+      opacity: 1,
+      duration: Math.random() * 10 + 12,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      delay: Math.random() * 5
+    });
   }
-}
 
-/* ===== PARTICULES ===== */
-const particlesContainer = document.getElementById("particles");
-const PARTICLES_COUNT = 18;
-
-for(let i=0;i<PARTICLES_COUNT;i++){
-  const p = document.createElement("div");
-  p.className = "particle";
-  particlesContainer.appendChild(p);
-
-  gsap.set(p,{
-    x: Math.random() * window.innerWidth,
-    y: Math.random() * window.innerHeight,
-    scale: Math.random() * 1.2 + 0.4
-  });
-
-  gsap.to(p,{
-    y: "-=120",
-    x: "+=40",
-    opacity: 1,
-    duration: Math.random() * 10 + 12,
-    repeat: -1,
-    yoyo: true,
-    ease: "sine.inOut",
-    delay: Math.random() * 5
-  });
-}
-
-/* ===== GESTION DES OPTIONS ===== */
-function setupOptions(containerId, selectedArray, isSingle = false) {
-  const container = document.getElementById(containerId);
-  const options = container.querySelectorAll(".option");
-  
-  options.forEach(option => {
-    option.onclick = () => {
-      if (isSingle) {
-        // Pour une sélection unique
-        options.forEach(o => o.classList.remove("active"));
-        option.classList.add("active");
-        selectedArray.length = 0;
-        selectedArray.push(option.dataset.value);
-      } else {
-        // Pour sélection multiple
-        option.classList.toggle("active");
-        const value = option.dataset.value;
-        if (selectedArray.includes(value)) {
-          selectedArray = selectedArray.filter(x => x !== value);
+  /* ===== GESTION DES OPTIONS ===== */
+  function setupOptions(containerId, selectedArray, isSingle = false) {
+    const container = document.getElementById(containerId);
+    const options = container.querySelectorAll(".option");
+    
+    options.forEach(option => {
+      option.onclick = () => {
+        if (isSingle) {
+          // Pour une sélection unique
+          options.forEach(o => o.classList.remove("active"));
+          option.classList.add("active");
+          selectedArray.length = 0;
+          selectedArray.push(option.dataset.value);
         } else {
-          selectedArray.push(value);
+          // Pour sélection multiple
+          option.classList.toggle("active");
+          const value = option.dataset.value;
+          if (selectedArray.includes(value)) {
+            const index = selectedArray.indexOf(value);
+            selectedArray.splice(index, 1);
+          } else {
+            selectedArray.push(value);
+          }
         }
+      };
+    });
+    
+    return { options, selectedArray };
+  }
+
+  // Initialiser toutes les options
+  const tailleVetements = setupOptions("taille-vetements", selectedTaille, true);
+  selectedTaille = tailleVetements.selectedArray;
+
+  const pointures = setupOptions("pointures", selectedPointure, true);
+  selectedPointure = pointures.selectedArray;
+
+  const couleurs = setupOptions("couleurs", selectedCouleurs);
+  selectedCouleurs = couleurs.selectedArray;
+
+  const odeurs = setupOptions("odeurs", selectedOdeurs, true);
+  selectedOdeurs = odeurs.selectedArray;
+
+  // Configuration alcool
+  document.querySelectorAll('#alcool-option .option').forEach(option => {
+    option.onclick = function() {
+      document.querySelectorAll('#alcool-option .option').forEach(o => o.classList.remove("active"));
+      this.classList.add("active");
+      selectedAlcool = this.dataset.value;
+      
+      // Afficher/masquer les sections alcool
+      if (selectedAlcool === "oui") {
+        champagneSection.classList.remove("hidden");
+        spiritueuxSection.classList.remove("hidden");
+      } else {
+        champagneSection.classList.add("hidden");
+        spiritueuxSection.classList.add("hidden");
+        // Réinitialiser les sélections d'alcool
+        selectedChampagne = [];
+        selectedSpiritueux = [];
+        document.querySelectorAll('#champagne .option, #spiritueux .option').forEach(o => {
+          o.classList.remove("active");
+        });
       }
     };
   });
-  
-  return { options, selectedArray };
-}
 
-// Initialiser toutes les options
-const tailleVetements = setupOptions("taille-vetements", selectedTaille, true);
-selectedTaille = tailleVetements.selectedArray;
+  const jus = setupOptions("jus", selectedJus);
+  selectedJus = jus.selectedArray;
 
-const pointures = setupOptions("pointures", selectedPointure, true);
-selectedPointure = pointures.selectedArray;
+  const champagne = setupOptions("champagne", selectedChampagne);
+  selectedChampagne = champagne.selectedArray;
 
-const couleurs = setupOptions("couleurs", selectedCouleurs);
-selectedCouleurs = couleurs.selectedArray;
+  const spiritueux = setupOptions("spiritueux", selectedSpiritueux);
+  selectedSpiritueux = spiritueux.selectedArray;
 
-const alcoolOption = setupOptions("alcool-option", [selectedAlcool], true);
-// Surveiller les changements pour l'alcool
-document.querySelectorAll('#alcool-option .option').forEach(option => {
-  option.onclick = function() {
-    document.querySelectorAll('#alcool-option .option').forEach(o => o.classList.remove("active"));
-    this.classList.add("active");
-    selectedAlcool = this.dataset.value;
+  const boissonsChaudes = setupOptions("boissons-chaudes", selectedBoissonsChaudes);
+  selectedBoissonsChaudes = boissonsChaudes.selectedArray;
+
+  // Configuration allergies
+  document.querySelectorAll('#allergies .option').forEach(option => {
+    option.onclick = function() {
+      document.querySelectorAll('#allergies .option').forEach(o => o.classList.remove("active"));
+      this.classList.add("active");
+      selectedAllergies = this.dataset.value;
+    };
+  });
+
+  /* ===== PRÉVISUALISATION PHOTO ===== */
+  document.getElementById('photo').addEventListener('change', function(e) {
+    const preview = document.getElementById('photo-preview');
+    const previewImage = document.getElementById('preview-image');
     
-    // Afficher/masquer les sections alcool
-    if (selectedAlcool === "oui") {
-      champagneSection.classList.remove("hidden");
-      spiritueuxSection.classList.remove("hidden");
-    } else {
-      champagneSection.classList.add("hidden");
-      spiritueuxSection.classList.add("hidden");
-      // Réinitialiser les sélections d'alcool
-      selectedChampagne = [];
-      selectedSpiritueux = [];
-      document.querySelectorAll('#champagne .option, #spiritueux .option').forEach(o => {
-        o.classList.remove("active");
-      });
-    }
-  };
-});
-
-const jus = setupOptions("jus", selectedJus);
-selectedJus = jus.selectedArray;
-
-const champagne = setupOptions("champagne", selectedChampagne);
-selectedChampagne = champagne.selectedArray;
-
-const spiritueux = setupOptions("spiritueux", selectedSpiritueux);
-selectedSpiritueux = spiritueux.selectedArray;
-
-const boissonsChaudes = setupOptions("boissons-chaudes", selectedBoissonsChaudes);
-selectedBoissonsChaudes = boissonsChaudes.selectedArray;
-
-const allergies = setupOptions("allergies", [selectedAllergies], true);
-// Mettre à jour selectedAllergies
-document.querySelectorAll('#allergies .option').forEach(option => {
-  option.onclick = function() {
-    document.querySelectorAll('#allergies .option').forEach(o => o.classList.remove("active"));
-    this.classList.add("active");
-    selectedAllergies = this.dataset.value;
-  };
-});
-
-/* ===== SOUMISSION DU FORMULAIRE ===== */
-form.onsubmit = async e => {
-  e.preventDefault();
-  
-  // Désactiver le bouton pendant l'envoi
-  const submitBtn = document.querySelector('button[type="submit"]');
-  const originalBtnText = submitBtn.innerHTML;
-  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
-  submitBtn.disabled = true;
-  
-  try {
-    let photoData = null;
-    
-    // 1. Upload de la photo sur Cloudinary si elle existe
-    if (uploadedPhoto) {
-      photoData = await uploadToCloudinary(uploadedPhoto);
+    if (this.files && this.files[0]) {
+      const reader = new FileReader();
       
-      if (!photoData) {
-        const continueWithoutPhoto = confirm('Problème avec l\'upload photo. Continuer sans la photo ?');
-        if (!continueWithoutPhoto) {
-          submitBtn.innerHTML = originalBtnText;
-          submitBtn.disabled = false;
-          return;
-        }
+      reader.onload = function(e) {
+        previewImage.src = e.target.result;
+        preview.style.display = 'block';
       }
+      
+      reader.readAsDataURL(this.files[0]);
+    } else {
+      preview.style.display = 'none';
     }
+  });
+
+  /* ===== FONCTION D'ENVOI D'EMAILS ===== */
+  async function sendEmails(data) {
+    try {
+      // 1. Envoyer l'email au propriétaire (vous)
+      const ownerTemplateData = {
+        nom: data.nom,
+        prenom: data.prenom,
+        email: data.email,
+        telephone_complet: data.telephone_complet,
+        instagram: data.instagram,
+        taille: data.taille,
+        pointure: data.pointure,
+        couleurs: data.couleurs,
+        odeur: data.odeur,
+        alcool: data.alcool,
+        jus: data.jus,
+        champagne: data.champagne,
+        spiritueux: data.spiritueux,
+        boissons_chaudes: data.boissons_chaudes,
+        allergies_fruits_de_mer: data.allergies_fruits_de_mer,
+        photo_url: data.photo_url,
+        evenement: data.evenement,
+        date: data.date,
+        lieu: data.lieu,
+        timestamp: new Date().toLocaleString('fr-FR')
+      };
+
+      const ownerResponse = await emailjs.send(
+        "service_xoza1k6", // Votre Service ID
+        "template_jtmxw1q", // Template pour VOUS recevoir les infos
+        ownerTemplateData
+      );
+
+      console.log("Email propriétaire envoyé:", ownerResponse.status);
+
+      // 2. Envoyer l'email de confirmation à l'invité
+      const guestTemplateData = {
+        to_name: `${data.prenom} ${data.nom}`,
+        to_email: data.email,
+        evenement: data.evenement,
+        date: data.date,
+        lieu: data.lieu
+      };
+
+      const guestResponse = await emailjs.send(
+        "service_xoza1k6", // Même Service ID
+        "template_s06wn2h", // Template pour les INVITÉS (confirmation)
+        guestTemplateData
+      );
+
+      console.log("Email invité envoyé:", guestResponse.status);
+      
+      return { success: true, owner: ownerResponse, guest: guestResponse };
+      
+    } catch (error) {
+      console.error("Erreur envoi emails:", error);
+      return { success: false, error: error };
+    }
+  }
+
+  /* ===== SOUMISSION DU FORMULAIRE ===== */
+  form.onsubmit = async e => {
+    e.preventDefault();
+
+    // Désactiver le bouton pendant le traitement
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Traitement en cours...';
+    loading.style.display = 'block';
+
+    // Vérifier que tous les champs obligatoires sont remplis
+    const requiredFields = ['nom', 'prenom', 'email', 'telephone', 'instagram'];
+    let isValid = true;
+    let errorMessages = [];
     
+    requiredFields.forEach(field => {
+      const element = document.getElementById(field);
+      if (!element.value.trim()) {
+        isValid = false;
+        element.style.border = '2px solid red';
+        errorMessages.push(`Le champ ${field} est obligatoire`);
+      } else {
+        element.style.border = 'none';
+      }
+    });
+
+    // Vérifier les sélections obligatoires
+    const requiredSelections = [
+      { name: 'Taille', selected: selectedTaille.length },
+      { name: 'Pointure', selected: selectedPointure.length },
+      { name: 'Odeur préférée', selected: selectedOdeurs.length },
+      { name: 'Consommation alcool', selected: selectedAlcool },
+      { name: 'Allergies fruits de mer', selected: selectedAllergies }
+    ];
+
+    requiredSelections.forEach(selection => {
+      if (!selection.selected) {
+        isValid = false;
+        errorMessages.push(`Veuillez sélectionner une option pour "${selection.name}"`);
+      }
+    });
+
+    if (!isValid) {
+      alert('Veuillez corriger les erreurs suivantes :\n\n' + errorMessages.join('\n'));
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Confirmer la réservation';
+      loading.style.display = 'none';
+      return;
+    }
+
     // Récupérer toutes les sélections actuelles
     selectedTaille = [];
     selectedPointure = [];
     selectedCouleurs = [];
+    selectedOdeurs = [];
     selectedJus = [];
     selectedChampagne = [];
     selectedSpiritueux = [];
@@ -1126,6 +1122,10 @@ form.onsubmit = async e => {
     
     document.querySelectorAll('#couleurs .option.active').forEach(o => {
       selectedCouleurs.push(o.dataset.value);
+    });
+    
+    document.querySelectorAll('#odeurs .option.active').forEach(o => {
+      selectedOdeurs.push(o.dataset.value);
     });
     
     document.querySelectorAll('#jus .option.active').forEach(o => {
@@ -1144,7 +1144,30 @@ form.onsubmit = async e => {
       selectedBoissonsChaudes.push(o.dataset.value);
     });
 
-    // 2. Préparer les données pour EmailJS
+    // Upload photo sur Cloudinary si elle existe
+    let photoUrl = "";
+    const photoInput = document.getElementById('photo');
+    if (photoInput.files.length > 0) {
+      try {
+        const formData = new FormData();
+        formData.append('file', photoInput.files[0]);
+        formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+        
+        const response = await fetch(
+          `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
+          {
+            method: 'POST',
+            body: formData
+          }
+        );
+        
+        const result = await response.json();
+        photoUrl = result.secure_url;
+      } catch (error) {
+        console.error("Erreur d'upload :", error);
+      }
+    }
+
     const data = {
       nom: nom.value,
       prenom: prenom.value,
@@ -1152,102 +1175,102 @@ form.onsubmit = async e => {
       indicatif: indicatif.value,
       telephone: telephone.value,
       telephone_complet: indicatif.value + " " + telephone.value,
+      instagram: "@" + instagram.value,
       taille: selectedTaille.join(", ") || "—",
       pointure: selectedPointure.join(", ") || "—",
       couleurs: selectedCouleurs.join(", ") || "—",
+      odeur: selectedOdeurs.join(", ") || "—",
       alcool: selectedAlcool || "—",
       jus: selectedJus.join(", ") || "—",
       champagne: selectedChampagne.join(", ") || "—",
       spiritueux: selectedSpiritueux.join(", ") || "—",
       boissons_chaudes: selectedBoissonsChaudes.join(", ") || "—",
       allergies_fruits_de_mer: selectedAllergies || "—",
+      photo_url: photoUrl || "Aucune photo",
       evenement: "Finale Nanawax XV",
       date: "28-30 mars 2026",
-      lieu: "Assinie",
-      photo_uploaded: photoData ? "OUI" : "NON",
-      photo_url: photoData ? photoData.url : "Aucune photo",
-      photo_size: photoData ? `${(photoData.size / 1024).toFixed(1)} KB` : "—",
-      submission_date: new Date().toLocaleString('fr-FR')
+      lieu: "Assinie"
     };
+
+    // Envoyer les emails
+    const emailResult = await sendEmails(data);
+
+    // Afficher le résultat
+    loading.style.display = 'none';
     
-    // 3. Envoyer via EmailJS
-    await emailjs.send("service_xoza1k6", "template_jtmxw1q", data);
-    
-    // 4. Afficher confirmation
-    resume.innerHTML = `
-      <div style="text-align: left; line-height: 1.6;">
-        <h3 style="color: #7a5c48; margin-bottom: 20px;">✅ Réservation confirmée !</h3>
+    if (emailResult.success) {
+      // Afficher le résumé
+      resume.innerHTML = `
         <p><b>Nom :</b> ${data.nom} ${data.prenom}</p>
         <p><b>Email :</b> ${data.email}</p>
         <p><b>Téléphone :</b> ${data.telephone_complet}</p>
-        <p><b>Photo :</b> ${data.photo_uploaded}</p>
-        ${photoData ? `
-          <p><b>Lien photo :</b></p>
-          <div style="margin: 10px 0;">
-            <a href="${photoData.url}" target="_blank" 
-               style="color: #7a5c48; text-decoration: underline;">
-               <i class="fas fa-external-link-alt"></i> Voir la photo sur Cloudinary
-            </a>
-          </div>
-          <small style="color: #666; font-size: 0.9em;">
-            Photo sauvegardée dans votre compte Cloudinary
-          </small>
-        ` : ''}
-        <hr style="margin: 20px 0; border-color: #eee;">
-        <p style="color: #28a745; font-weight: 500;">
-          <i class="fas fa-envelope"></i> Un récapitulatif vous a été envoyé par email.
-        </p>
-      </div>
-    `;
+        <p><b>Instagram :</b> ${data.instagram}</p>
+        <p><b>Taille :</b> ${data.taille}</p>
+        <p><b>Pointure :</b> ${data.pointure}</p>
+        <p><b>Couleurs préférées :</b> ${data.couleurs}</p>
+        <p><b>Odeur préférée :</b> ${data.odeur}</p>
+        <p><b>Consommation d'alcool :</b> ${data.alcool}</p>
+        <p><b>Jus préférés :</b> ${data.jus}</p>
+        ${data.alcool === "oui" ? `<p><b>Champagne :</b> ${data.champagne}</p>` : ''}
+        ${data.alcool === "oui" ? `<p><b>Spiritueux :</b> ${data.spiritueux}</p>` : ''}
+        <p><b>Boissons chaudes :</b> ${data.boissons_chaudes}</p>
+        <p><b>Allergies fruits de mer :</b> ${data.allergies_fruits_de_mer}</p>
+        <p><b>Photo :</b> ${data.photo_url === "Aucune photo" ? "Non fournie" : "✓ Téléchargée"}</p>
+        <hr style="margin: 20px 0;">
+        <p style="color: #4CAF50; font-weight: 500;">✅ Réservation confirmée !</p>
+        <p><i>Un email de confirmation a été envoyé à ${data.email}</i></p>
+      `;
+      
+      overlay.classList.add("show");
+    } else {
+      alert("Une erreur s'est produite lors de l'envoi des emails. Veuillez réessayer.");
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Confirmer la réservation';
+    }
+  };
+
+  function closeConfirm() {
+    overlay.classList.remove("show");
+    form.reset();
     
-    overlay.classList.add("show");
+    // Réinitialiser toutes les sélections
+    selectedTaille = [];
+    selectedPointure = [];
+    selectedCouleurs = [];
+    selectedOdeurs = [];
+    selectedAlcool = "";
+    selectedJus = [];
+    selectedChampagne = [];
+    selectedSpiritueux = [];
+    selectedBoissonsChaudes = [];
+    selectedAllergies = "";
     
-  } catch (error) {
-    console.error('Erreur complète:', error);
-    alert('Une erreur est survenue. Veuillez réessayer ou nous contacter.');
-  } finally {
+    // Désactiver toutes les options
+    document.querySelectorAll('.option').forEach(o => {
+      o.classList.remove("active");
+    });
+    
+    // Masquer les sections alcool
+    champagneSection.classList.add("hidden");
+    spiritueuxSection.classList.add("hidden");
+    
+    // Réinitialiser la photo
+    document.getElementById('photo').value = '';
+    document.getElementById('photo-preview').style.display = 'none';
+    
+    // Réinitialiser les bordures
+    document.querySelectorAll('input').forEach(input => {
+      input.style.border = 'none';
+    });
+    
     // Réactiver le bouton
-    submitBtn.innerHTML = originalBtnText;
     submitBtn.disabled = false;
+    submitBtn.innerHTML = 'Confirmer la réservation';
   }
-};
 
-function closeConfirm() {
-  overlay.classList.remove("show");
-  form.reset();
-  
-  // Réinitialiser toutes les sélections
-  selectedTaille = [];
-  selectedPointure = [];
-  selectedCouleurs = [];
-  selectedAlcool = "";
-  selectedJus = [];
-  selectedChampagne = [];
-  selectedSpiritueux = [];
-  selectedBoissonsChaudes = [];
-  selectedAllergies = "";
-  uploadedPhoto = null;
-  cloudinaryPhotoUrl = null;
-  
-  // Désactiver toutes les options
-  document.querySelectorAll('.option').forEach(o => {
-    o.classList.remove("active");
-  });
-  
-  // Réinitialiser la photo
-  photoInput.value = '';
-  fileName.textContent = 'Aucune photo sélectionnée';
-  imagePreview.style.display = 'none';
-  previewImage.src = '';
-  
-  // Masquer les sections alcool
-  champagneSection.classList.add("hidden");
-  spiritueuxSection.classList.add("hidden");
-}
-
-/* ===== ANIMATIONS GSAP ===== */
-gsap.from(".hero", { opacity: 0, y: -50, duration: 1 });
-gsap.from(".glass", { opacity: 0, y: 80, duration: 1, delay: .3 });
+  /* ===== ANIMATIONS GSAP ===== */
+  gsap.from(".hero", { opacity: 0, y: -50, duration: 1 });
+  gsap.from(".glass", { opacity: 0, y: 80, duration: 1, delay: .3 });
 </script>
 
 </body>
